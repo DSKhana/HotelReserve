@@ -49,5 +49,4 @@ public class InquireReply extends BaseEntity<Long>{
 		this.description = description;
 		this.day = day;		
 	}
-	
 }

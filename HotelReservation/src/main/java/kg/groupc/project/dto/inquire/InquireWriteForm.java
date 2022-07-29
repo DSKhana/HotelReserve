@@ -7,14 +7,18 @@ import org.modelmapper.ModelMapper;
 import kg.groupc.project.entity.account.Account;
 import kg.groupc.project.entity.hotel.Hotel;
 import kg.groupc.project.entity.inquire.Inquire;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class InquireWriteForm {
 	private String category; // 카테고리
 	private Hotel hotel; // 호텔코드
@@ -32,13 +36,13 @@ public class InquireWriteForm {
 	
 	public Inquire toEntity() {
 		Inquire inquire = Inquire.builder()
-				.title(title)
 				.category(category)
-				.writer(writer)
-				.hotel(hotel)
-				.day(day)
+				.hotel(getHotel()) // 외래키
+				.title(title)
 				.description(description)
-				.status(status)
+				.day(day)
+				.writer(getWriter()) //외래키
+				.status(1L)
 				.build();
 		return inquire;
 	}

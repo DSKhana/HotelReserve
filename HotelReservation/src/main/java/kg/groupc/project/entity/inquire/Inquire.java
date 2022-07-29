@@ -10,17 +10,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+
 import kg.groupc.project.entity.BaseEntity;
 import kg.groupc.project.entity.account.Account;
 import kg.groupc.project.entity.hotel.Hotel;
+import kg.groupc.project.entity.restaurant.Restaurant;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 // 문의글
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@DynamicInsert
 public class Inquire extends BaseEntity<Long>{
 	
 	// 작성자(외래키)
@@ -42,12 +49,14 @@ public class Inquire extends BaseEntity<Long>{
 	private String description;
 	
 	// 작성일
+	@CreationTimestamp
 	@Column(nullable = false)
 	private Date day;
 	
 	// 카테고리
 	@Column(nullable = false)
 	private String category;
+	
 	
 	@Column(nullable = false, columnDefinition = "number(1) default 1")
 	private Long status;
@@ -65,5 +74,27 @@ public class Inquire extends BaseEntity<Long>{
 		this.description = description;
 		this.day = day;
 		this.status = status;
+	}
+
+
+	public void patch(Inquire inquire) {
+		if (inquire.writer != null) {
+			this.writer = inquire.writer;
+		}
+		if (inquire.category != null) {
+			this.category = inquire.category;
+		}
+		if (inquire.title != null) {
+			this.title = inquire.title;
+		}
+		if (inquire.description != null) {
+			this.description = inquire.description;
+		}
+		if (inquire.day != null) {
+			this.day = inquire.day;
+		}
+		if (inquire.status != null) {
+			this.status = inquire.status;
+		}
 	}
 }

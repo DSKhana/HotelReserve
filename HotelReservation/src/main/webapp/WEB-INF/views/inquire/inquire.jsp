@@ -9,12 +9,12 @@
 <link rel="icon" href="resources/img/hotel.png">
 
 <%-- Main Style Sheet --%>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<style type="text/css">
+		
 		.form-group{
 		    width: 100%;
 		}		
@@ -44,12 +44,13 @@
 	
 	<%-- Navigation --%>
 	<c:import url="${pageContext.request.contextPath}/nav"></c:import>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	
 	<%-- 상단 제목 --%>
 	<div class="crew-topContainer" style="width: 1100px">
 	
 		<%-- 제목 --%>
-		<div class="common-top_title" style="font-size: 30px; color: #FAAC58">
+		<div class="common-top_title" style="font-size: 30px; color: #F6CECE">
 		문의하기</div><hr><br>
 	</div>
 
@@ -78,10 +79,10 @@
 	</div>
 
 	<%-- 글 목록 --%>	
-	<div id="inquire-list">
+	<div class="moonTable" id="inquire-list">
 		<table class="table table-hover">
 		  <thead>
-		    <tr>
+		    <tr align="center">
 		      <th scope="col">글번호</th>
 		      <th scope="col">카테고리</th>
 		      <th scope="col">제목</th>
@@ -91,60 +92,20 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<c:forEach items="${list.content}" var="inquire" begin="0" end="40">
-		  		<tr class="list-item, status: ${items.getContent()}" class="table-active">
-			      <td>th:text="${inquire.seq}"></td>
+		  	<c:forEach items="${list.content}" var="inquire">
+		  		<tr class="table-active" align="center">
+			      <td>${inquire.seq}</td>
 			      <td>${inquire.category}</td>
-			      <td>${inquire.title}</td>
-			      <td>${inquire.regDate}</td>
-			      <td>${inquire.writer}</td>
+			      <td><a href="<c:url value="/inquire/read/${inquire.seq}"/>">${inquire.title}</a></td>
+			      <td>${inquire.day}</td>
+			      <td>${inquire.username}</td>
 			      <td>${inquire.status}</td>
 			    </tr>		  	
 		  	</c:forEach>		    
 		  </tbody>
 		</table>
 	</div>
-
-  	
-	<ul class="pagination" style="align-center">
-		<!-- 첫 페이지로 이동 -->
-	<li>
-		<a class="page-link" href="/review?page=0"> << </a>
-	</li>
-	
-		<!-- 이전 페이지로 이동 : 첫 페이지 제외 -->
-		<c:if test="${startBlockPage ne 1}">
-		    <li>
-		        <a class="page-link" href="/review?page=${startBlockPage-2}">
-		            < </a>
-		    </li>
-		</c:if>
-		
-		<!-- 페이징 블록 1 ~ 10 -->
-		<c:forEach begin="${startBlockPage}" end="${endBlockPage}" var="idx">
-		    <li>
-		        <a class="page-link" href="/review?page=${idx-1}">${idx}</a>
-		    </li>
-		</c:forEach>
-	
-	    <!-- 다음 페이지로 이동 : 마지막 페이지 제외 -->
-		<c:if test="${endBlockPage ne reviewList.totalPages}">
-			<li>
-			    <a class="page-link" href="/review?page=${endBlockPage}">
-			        > </a>
-			</li>
-		</c:if>
-	
-		<!-- 마지막 페이지로 이동 -->
-		<li>
-		    <a class="page-link" href="/review?page=${reviewList.totalPages-1}">
-		        >> </a>
-		</li>
-	</ul>					
-	<hr><br><br>
-
  	
-<%--
 	<!-- Pagination  -->
 	<div class="text-xs-center">
 		<ul class="pagination justify-content-center">
@@ -179,6 +140,5 @@
 			</c:choose>
 		</ul>		
 	</div>
- --%>
 </body>
 </html>

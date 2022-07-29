@@ -13,7 +13,7 @@
    	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<style type="text/css">
-		.inquire-form{margin:auto; width:700px;}
+		.write-form{margin:auto; width:700px;}
 		.cat-select {
 		    width: 100%;
 		}		
@@ -41,6 +41,7 @@
 <body>
 <%-- 네비 --%>
 	<c:import url="${pageContext.request.contextPath}/nav"></c:import>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <%-- 제목 --%>
 	<div class="common-iuTop--title" style="font-size: 30px; color:#F4B7B4">
@@ -49,7 +50,7 @@
 	<br><br>
 
 		<%-- 글쓰기 폼 카테고리/제목/내용/ --%>
-	<div class="inquire-form" style="align-center">
+	<div class="write-form" style="align-center">
         <form class="inquire-form" action="/inquire/write" method="post">
             <table>
 				
@@ -60,43 +61,27 @@
 						<div class="cat-select">
                         <select id="category" name="category" class="form-select" style="width:150px;height:40px;">
                             <option selected disabled> 선택 </option>
-                            <option value="hotel"> 숙소 </option>
-                            <option value="rest"> 맛집 </option>
-                            <option value="account"> 계정 </option>
-                            <option value="site"> 사이트이용 </option>
-                            <option value="improve"> 개선사항 </option>
-                            <option value="guituar"> 기타 </option>
+                            <option value="숙소"> 숙소 </option>
+                            <option value="맛집"> 맛집 </option>
+                            <option value="계정"> 계정 </option>
+                            <option value="사이트이용"> 사이트이용 </option>
+                            <option value="개선사항"> 개선사항 </option>
+                            <option value="기타"> 기타 </option>
                         </select>
                         
-                        <c:if test="${category eq 'hotel'}">
+                        
 							<select name="hotelCode" class="form-select" style="width:200px;height:40px;">
 	                        	<%-- 호텔코드 선택하는 메뉴 출력--%>
 	                        	<option selected disabled> hotelcode 선택 </option>
 	                        	<option value="${hotel.code}">${hotel.code}</option>
 	                            <option value="${hotel.code}">${hotel.code}</option>
 	                        </select>
-                        </c:if>
+                        
                         </div>
                     </td>
                 </tr>
                 
-				<%-- 작성자 --%>
-				<tr class="common-tbl__item">
-                    <td style="width: 170px" align="center">
-                        name
-                    </td>
-                    <td>
-                        <input  name="writer" class="form-control" placeholder="이름 입력" style="width: 100px" type="text"/>
-                    </td>
-                </tr>
-                <tr class="common-tbl__item">
-                    <td style="width: 170px" align="center">
-                        Date
-                    </td>
-                    <td>
-                        <input  name="day" class="form-control" placeholder="날짜 입력" style="width: 200px" type="text"/>
-                    </td>
-                </tr>
+				
                 <%-- 제목 : text --%>
                 <tr class="common-tbl__item">
                     <td style="width: 170px" align="center">
@@ -107,7 +92,7 @@
                     </td>
                 </tr>
 
-                <%-- 내용 : textarea --%>
+                <%-- 내용 : text area --%>
                 <tr class="common-tbl__item">
                     <td style="width: 170px" align="center">
                         Description
@@ -119,12 +104,12 @@
             </table>
 			<br>
 			<%-- 등록 버튼 --%>
-            <div id="reviewIU-container--bottom" align="center">
+            <div id="inquire-button" align="center">
             	<button type="button" class="invisible"> 목록으로 </button>
-            	&nbsp
-				<button type="submit" onclick="uploadCanvasData(save);" id="inquire-btn-submit"
+            	
+				<button type="submit" id="inquire-btn-submit"
                         class="btn btn-danger"> 작성</button>
-				&nbsp
+				
 				<button type="button" onclick="location.href='/inquire'" class="btn btn-success"> 목록으로 </button>
             </div>
             
