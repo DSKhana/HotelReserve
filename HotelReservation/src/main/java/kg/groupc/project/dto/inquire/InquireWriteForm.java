@@ -2,6 +2,8 @@ package kg.groupc.project.dto.inquire;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+
 import org.modelmapper.ModelMapper;
 
 import kg.groupc.project.entity.account.Account;
@@ -20,10 +22,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InquireWriteForm {
+	@NotBlank(message = "카테고리를 선택해주세요.")
 	private String category; // 카테고리
 	private Hotel hotel; // 호텔코드
+	@NotBlank(message = "제목을 입력해주세요.")
 	private String title; // 제목
 	private Account writer; // 작성자
+	@NotBlank(message = "내용을 입력해주세요.")
 	private String description; // 내용
 	private Date day; // 등록일
 	private Long status; // 처리상태
@@ -37,7 +42,6 @@ public class InquireWriteForm {
 	public Inquire toEntity() {
 		Inquire inquire = Inquire.builder()
 				.category(category)
-				.hotel(getHotel()) // 외래키
 				.title(title)
 				.description(description)
 				.day(day)

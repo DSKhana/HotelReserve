@@ -2,16 +2,11 @@ package kg.groupc.project.service.inquire;
 
 import java.io.Serializable;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import kg.groupc.project.dto.inquire.InquireWriteForm;
 import kg.groupc.project.entity.inquire.Inquire;
@@ -26,26 +21,6 @@ public class InquireService<T, ID extends Serializable> extends BaseService<Inqu
 
 	@Autowired
 	private InquireRepository<Inquire, Long> inquireRepository;
-	
-//	public InquireService(InquireRepository<Inquire, Long> inquireRepository) {
-//		super(inquireRepository);
-//		this.inquireRepository = inquireRepository;
-//	}
-	
-//	EntityManagerFactory emf = Persistence.createEntityManagerFactory("kg.groupc.project");
-//	JPAQueryFactory jpaQF = new JPAQueryFactory(em);
-	
-//	public List<Hotel> getHotelList(Hotel hotel, Booking booking, Account account){
-//		JPAQuery<Inquire> query = select();
-//		query.from(QHotel.hotel, QBooking.booking, QAccount.account);
-//		query.where(account.getSeq().equals(booking.getReserver()));
-//		query.groupBy(hotel.getName());
-//		query.fetch();
-//		
-//		return null;
-//	}
-		
-	
 	
 	// 문의 전체 리스트
 	@Transactional(readOnly = true)
@@ -73,18 +48,6 @@ public class InquireService<T, ID extends Serializable> extends BaseService<Inqu
 	public Long saveInquire(InquireWriteForm idto) {
 		return inquireRepository.save(idto.toEntity()).getSeq();	
 	}
-
-	// 문의 삭제
-	@Transactional
-	public Inquire delete(Long seq) {
-		Inquire inquire = inquireRepository.findById(seq).orElse(null);
-		if(inquire == null) {
-			return null;
-		}
-		inquireRepository.delete(inquire);
-		return inquire;
-	}
-
 	
 	// 문의 수정
 	@Transactional
@@ -96,6 +59,17 @@ public class InquireService<T, ID extends Serializable> extends BaseService<Inqu
 		}
 		target.patch(inquire);
 		return inquireRepository.save(target);
+	}
+	
+	// 문의 삭제
+	@Transactional
+	public Inquire delete(Long seq) {
+		Inquire inquire = inquireRepository.findById(seq).orElse(null);
+		if(inquire == null) {
+			return null;
+		}
+		inquireRepository.delete(inquire);
+		return inquire;
 	}
 }
 

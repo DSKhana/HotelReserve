@@ -42,7 +42,7 @@
 <%-- 네비 --%>
 	<c:import url="${pageContext.request.contextPath}/nav"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+	
 <%-- 제목 --%>
 	<div class="common-iuTop--title" style="font-size: 30px; color:#F4B7B4">
 		문의 작성
@@ -72,7 +72,7 @@
                         
 							<select name="hotelCode" class="form-select" style="width:200px;height:40px;">
 	                        	<%-- 호텔코드 선택하는 메뉴 출력--%>
-	                        	<option selected disabled> hotelcode 선택 </option>
+	                        	<option selected disabled> hotel code 선택 </option>
 	                        	<option value="${hotel.code}">${hotel.code}</option>
 	                            <option value="${hotel.code}">${hotel.code}</option>
 	                        </select>
@@ -107,8 +107,7 @@
             <div id="inquire-button" align="center">
             	<button type="button" class="invisible"> 목록으로 </button>
             	
-				<button type="submit" id="inquire-btn-submit"
-                        class="btn btn-danger"> 작성</button>
+				<button type="submit" id="inquire-btn-submit" class="btn btn-danger"> 작성</button>
 				
 				<button type="button" onclick="location.href='/inquire'" class="btn btn-success"> 목록으로 </button>
             </div>

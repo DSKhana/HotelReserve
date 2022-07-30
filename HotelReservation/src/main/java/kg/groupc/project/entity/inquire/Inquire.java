@@ -16,7 +16,6 @@ import org.hibernate.annotations.DynamicInsert;
 import kg.groupc.project.entity.BaseEntity;
 import kg.groupc.project.entity.account.Account;
 import kg.groupc.project.entity.hotel.Hotel;
-import kg.groupc.project.entity.restaurant.Restaurant;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -66,10 +65,9 @@ public class Inquire extends BaseEntity<Long>{
 	
 	
 	@Builder
-	public Inquire(Account writer, String category, Hotel hotel,  String title, String description, Date day, Long status) {
+	public Inquire(Account writer, String category, String title, String description, Date day, Long status) {
 		this.writer = writer;
 		this.category = category;
-		this.hotel = hotel;
 		this.title = title;
 		this.description = description;
 		this.day = day;

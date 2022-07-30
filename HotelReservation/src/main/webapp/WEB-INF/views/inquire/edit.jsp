@@ -35,6 +35,7 @@
 <body>
 	<%-- nav --%>
 	<c:import url="${pageContext.request.contextPath}/nav"></c:import>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	
 	
 	
@@ -58,40 +59,40 @@
 				<tr>
 					<td style="width:80px" align="center">Number</td>
 					<td style="width:80px" align="center">
-						<input class="form-control" id="disabledInput" type="text" placeholder="${inquire.seq}" disabled="">
+						<input class="form-control" id="disabledInput" name="seq" value="${inquire.seq}" type="text" readonly="">
 					</td>
 					<td style="width:80px" align="center">Date</td>
 					<td style="width:140px" align="left">
-						<input class="form-control" id="readOnlyInput" type="text" placeholder="${inquire.day}" disabled="">
+						<input class="form-control" id="readOnlyInput" name="day" value="${inquire.day}" type="text" readonly="">
 					</td>
 					
 				</tr>
 				<tr>
 					<td style="width:80px" align="center">Category</td>
 					<td colspan="2">
-						<input class="form-control" id="readOnlyInput" type="text" placeholder="${inquire.category}" disabled="">
+						<input class="form-control" id="readOnlyInput" type="text" name="category" value="${inquire.category}" readonly="">
 					</td>
 				</tr>
 				<tr>
 					<td align="center">title</td>
 					<td colspan="4" align="left">
-						<input type="text" class="form-control" value="${inquire.title}">
+						<input type="text" name="title" class="form-control" value="${inquire.title}">
 					</td>
 					
 				</tr>
 				<tr>
-					<td>Description</td>
+					<td align="center">Description</td>
 					<td colspan="4">
-						<textarea class="form-control">${inquire.description}</textarea>
+						<textarea class="form-control" name="description">${inquire.description}</textarea>
 					</td>
 				</tr>
 			</table><br>
 			
 			<div class="inqbutton" align="center">
 			<button type="button" class="invisible"> 목록으로 지금당장가기 </button>
-			<button type="button" onclick="location.href='/inquire'" class="btn btn-outline-info"> 목록 </button>	
+			<button type="button" class="btn btn-outline-info" onclick="location.href='/inquire'" > 목록 </button>	
 			<button type="submit" class="btn btn-outline-success">수정</button>
-			<button class="btn btn-outline-danger" onclick="location.href='/inquire/delete/${inquire.seq}'">삭제</button>
+			<button type="button" class="btn btn-outline-danger" onclick="location.href='/inquire/delete/${inquire.seq}'">삭제</button>
 					
 			</div>
 		</form>			

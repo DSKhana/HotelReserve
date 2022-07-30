@@ -35,6 +35,7 @@
 <body>
 	<%-- nav --%>
 	<c:import url="${pageContext.request.contextPath}/nav"></c:import>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	
 	
 	
@@ -57,31 +58,31 @@
 				<tr>
 					<td style="width:80px" align="center">Number</td>
 					<td style="width:80px" align="center">
-						<input class="form-control" id="readOnlyInput" type="text" placeholder="${inquire.seq}" readonly="">
+						<input class="form-control" id="readOnlyInput" type="text" value="${inquire.seq}" readonly="">
 					</td>
 					<td style="width:80px" align="center">Date</td>
 					<td style="width:140px" align="left">
-						<input class="form-control" id="readOnlyInput" type="text" placeholder="${inquire.day}" readonly="">
+						<input class="form-control" id="readOnlyInput" type="text" value="${inquire.day}" readonly="">
 					</td>
 					
 				</tr>
 				<tr>
 					<td style="width:80px" align="center">Category</td>
 					<td colspan="2">
-						<input class="form-control" id="readOnlyInput" type="text" placeholder="${inquire.category}" readonly="">
+						<input class="form-control" id="readOnlyInput" type="text" value="${inquire.category}" readonly="">
 					</td>
 				</tr>
 				<tr>
 					<td align="center">title</td>
 					<td colspan="4" align="left">
-						<input class="form-control" id="readOnlyInput" type="text" placeholder="${inquire.title}" readonly="">
+						<input class="form-control" id="readOnlyInput" type="text" value="${inquire.title}" readonly="">
 					</td>
 					
 				</tr>
 				<tr>
-					<td>Description</td>
+					<td align="center">Description</td>
 					<td colspan="4">
-						<textarea class="form-control" id="readOnlyInput" placeholder="${inquire.description}" readonly=""></textarea>
+						<textarea class="form-control" id="readOnlyInput" value="${inquire.description}" readonly="">${inquire.description}</textarea>
 					</td>
 				</tr>
 			</table>
